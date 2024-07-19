@@ -1,0 +1,206 @@
+[gd_scene load_steps=4 format=3 uid="uid://u6rgf0w4t71k"]
+
+[ext_resource type="Script" path="res://game_play.gd" id="1_0iomg"]
+[ext_resource type="Script" path="res://DrawingBoard.gd" id="1_kg3eh"]
+[ext_resource type="Script" path="res://LineWithPreview.gd" id="2_od7v0"]
+
+[node name="GamPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0iomg")
+
+[node name="TipLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 228.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 15
+text = "提示"
+vertical_alignment = 1
+
+[node name="DrawingBoard" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 259.0
+offset_top = 57.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kg3eh")
+
+[node name="PenContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 10.0
+offset_right = 270.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="PenContainer"]
+layout_mode = 2
+text = "画笔颜色"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PenContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PenContainer"]
+layout_mode = 2
+text = "画笔粗细"
+
+[node name="ColorRect" type="ColorRect" parent="PenContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+script = ExtResource("2_od7v0")
+
+[node name="HSlider" type="HSlider" parent="PenContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[node name="Undo" type="Button" parent="PenContainer"]
+layout_mode = 2
+text = "撤销"
+
+[node name="Redo" type="Button" parent="PenContainer"]
+layout_mode = 2
+text = "重做"
+
+[node name="UserListPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 56.0
+offset_right = 256.0
+offset_bottom = -262.0
+grow_vertical = 2
+
+[node name="UserListContainer" type="VBoxContainer" parent="UserListPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChatPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = -3.0
+grow_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatPanel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 256.0
+offset_bottom = -50.0
+grow_vertical = 2
+
+[node name="MsgContainer" type="VBoxContainer" parent="ChatPanel/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChatPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="MsgEdit" type="LineEdit" parent="ChatPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SendMsgBtn" type="Button" parent="ChatPanel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "发送"
+
+[node name="LoginPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.988235, 0.847059, 0.952941, 1)
+
+[node name="Label" type="Label" parent="LoginPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 85.0
+offset_right = 160.0
+offset_bottom = 195.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.937255, 0.364706, 0.713726, 1)
+theme_override_colors/font_shadow_color = Color(0.717647, 0.682353, 0.584314, 0.521569)
+theme_override_constants/shadow_outline_size = 30
+theme_override_font_sizes/font_size = 80
+text = "你画我猜"
+
+[node name="NickEdit" type="LineEdit" parent="LoginPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -21.0
+offset_right = 119.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "梵高"
+
+[node name="StartGameButton" type="Button" parent="LoginPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 71.0
+offset_right = 53.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "开始游戏"
+
+[connection signal="pressed" from="PenContainer/Undo" to="DrawingBoard" method="_on_undo_pressed"]
+[connection signal="pressed" from="PenContainer/Redo" to="DrawingBoard" method="_on_redo_pressed"]
+[connection signal="pressed" from="ChatPanel/HBoxContainer/SendMsgBtn" to="." method="_on_send_msg_btn_pressed"]
+[connection signal="pressed" from="LoginPanel/StartGameButton" to="." method="_on_start_game_button_pressed"]
